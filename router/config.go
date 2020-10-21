@@ -35,8 +35,12 @@ func (g *delegateConfigGetter) Hash() (string, error) {
 var ConfigGetterFromData = configGetterFromData
 
 func configGetterFromData(data map[string]interface{}) ConfigGetter {
-	cfg := config.Configuration{}
 	unconverted, _ := internalConfig.UnconvertEntries(data).(map[interface{}]interface{})
+	return ConfigGetterFromUnconvertedEntries(unconverted)
+}
+
+func ConfigGetterFromUnconvertedEntries(unconverted map[interface{}]interface{}) ConfigGetter {
+	cfg := config.Configuration{}
 	cfg.Store(unconverted)
 	return &delegateConfigGetter{Configuration: &cfg}
 }
