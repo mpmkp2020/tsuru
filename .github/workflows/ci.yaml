@@ -12,7 +12,7 @@ jobs:
         arch: aarch64
         distro: ubuntu18.04
         run: |
-          sudo apt-get update -y && sudo apt-get install -y xmlsec1 wget git
+          apt-get update -y && sudo apt-get install -y xmlsec1 wget git
           pwd
           wget https://golang.org/dl/go1.14.10.linux-arm64.tar.gz
           tar -C /home/runner/work/tsuru -xzf go1.15.3.linux-amd64.tar.gz
