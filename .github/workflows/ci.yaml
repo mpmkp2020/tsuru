@@ -12,11 +12,12 @@ jobs:
         arch: aarch64
         distro: ubuntu18.04
         run: |
+          sudo apt-get update -y && sudo apt-get install -y xmlsec1 wget git
           pwd
           wget https://golang.org/dl/go1.14.10.linux-arm64.tar.gz
-          
+          tar -C /home/runner/work/tsuru -xzf go1.15.3.linux-amd64.tar.gz
+          export PATH=$PATH:/home/runner/work/tsuru/go/bin
           git ls-tree -r -t --full-name --name-only HEAD | grep -v vendor | xargs -I{} -P4 sh -c 'touch -d $(git log --pretty=format:%cI -1 HEAD -- "{}") "{}"'
-          sudo apt-get update && sudo apt-get install -y xmlsec1
           go test -race ./...
     # This magic line is to restore the timestamps (mtime) for each file based
     # on the its last commit. This allows Go test cache to reuse results for
