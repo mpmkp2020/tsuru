@@ -8,8 +8,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: testing-aarch64
-      with:
-        run: |
+      run: |
           docker run --rm --privileged hypriot/qemu-register
           docker run -v `pwd`:/home/:rw,z \
           quay.io/pypa/manylinux2014_aarch64 \
