@@ -11,7 +11,7 @@ jobs:
       run: |
           docker run --rm --privileged hypriot/qemu-register
           docker run -v `pwd`:/home/:rw,z \
-          quay.io/pypa/manylinux2014_aarch64 \
+          arm64v8/ubuntu:19.04 \
           bash \
           apt-get update -y && apt-get install -y xmlsec1 wget git gcc && \
           pwd &&\
